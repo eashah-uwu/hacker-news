@@ -1,3 +1,5 @@
+"use server";
+
 export type Story = {
   by: string;
   descendants: number;
@@ -34,21 +36,21 @@ export const getStories = async (
   return stories;
 };
 
-export const getAllStories = async (data: number[]): Promise<Stories> => {
-  const fetches = await Promise.all(
-    data.map(async (id: number) =>
-      fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/item/${id}.json?print=pretty`)
-    )
-  );
-
-  const stories = await Promise.all(fetches.map((f) => f.json()));
-
-  return stories;
-};
-
 export const getIDs = async (): Promise<number[]> => {
+  console.log(process.env.NEXT_PUBLIC_API_URL);
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`);
   const data = await response.json();
-
   return data;
 };
+
+// export const getAllStories = async (data: number[]): Promise<Stories> => {
+//   const fetches = await Promise.all(
+//     data.map(async (id: number) =>
+//       fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/item/${id}.json?print=pretty`)
+//     )
+//   );
+
+//   const stories = await Promise.all(fetches.map((f) => f.json()));
+
+//   return stories;
+// };
