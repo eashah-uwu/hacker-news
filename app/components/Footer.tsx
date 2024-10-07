@@ -1,4 +1,4 @@
-// import Search from "./Search";
+import Search from "./Search";
 import { Links } from "../lib/definitions";
 import Link from "next/link";
 
@@ -27,7 +27,7 @@ function Footer() {
             </li>
           ))}
         </ul>
-        {/* <Search /> */}
+        <Search />
       </div>
     </>
   );
